@@ -1,4 +1,3 @@
 class Hanafuda.ArgumentException extends Error
-  constructor: (instance) ->
-    @instance = this
+  constructor: (@instance) ->
     super 'ArgumentException'

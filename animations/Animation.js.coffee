@@ -9,7 +9,7 @@ class Hanafuda.Animation
     @instance.animations.push(this)
     @isgoingback = false
 
-  onBegin: () ->
+  onBegin: ->
     @instance.isAnimating = true
     return
 
@@ -27,13 +27,13 @@ class Hanafuda.Animation
     @instance.invalidate()
     return
 
-  isComplete: () ->
+  isComplete: ->
     return @instance.pos.eql(@finalpos)
 
-  dispose: () ->
+  dispose: ->
     @onAnimationComplete = @finalpos = @beginpos = @deltaPos = @instance = null
     return
 
-  goback: () ->
+  goback: ->
     @constructor.call(this, @instance, @duration / 2, @beginpos.x, @beginpos.y, @type)
     @isgoingback = !@isgoingback

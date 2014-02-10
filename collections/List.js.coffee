@@ -1,5 +1,5 @@
 class Hanafuda.List extends Array
-  constructor: () ->
+   constructor: ->
     super 0
 
   clear: ->

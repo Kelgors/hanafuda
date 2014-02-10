@@ -1,7 +1,7 @@
 #= require ./Region
 
 class Hanafuda.Deck extends Hanafuda.Region
-  constructor: () ->
+  constructor: ->
     @fill = '#000'
     @stroke = '#FFF'
     super 0, 0, Hanafuda.Card.WIDTH, Hanafuda.Card.HEIGHT

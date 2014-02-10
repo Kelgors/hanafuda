@@ -1,7 +1,9 @@
 
 class Hanafuda.Point
+  idcount = 0
   constructor: (x, y) ->
     @set(x || 0, y || 0)
+    @cid = 'point-' + (idcount++) if !@cid
   sub: (x, y) ->
     if x instanceof Hanafuda.Point
       y = x.y
@@ -38,5 +40,5 @@ class Hanafuda.Point
     @y = y
   clone: ->
     return new Hanafuda.Point(@x, @y)
-  toString: () ->
+  toString: ->
     return 'x: ' + @x + ', y: ' + @y

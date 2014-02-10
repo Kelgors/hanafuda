@@ -3,7 +3,7 @@ class Hanafuda.AnimationRunner extends Array
   constructor: ->
     @current = null
     super 0
-  dispose: () ->
+   dispose: ->
     @length = 0
     @current = null
     return

@@ -2,7 +2,7 @@
 #= require ../collections/List
 class Hanafuda.Card extends Hanafuda.Region
   constructor: (x, y, @type, @month) ->
-    @animations = new Hanafuda.List()
+    @animations = new Hanafuda.List
     @isSelected = @isFocus = false
     super x, y, Hanafuda.Card.WIDTH, Hanafuda.Card.HEIGHT
 

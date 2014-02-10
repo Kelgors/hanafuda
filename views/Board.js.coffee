@@ -9,10 +9,10 @@ class Hanafuda.Board extends Hanafuda.Region
     @stroke = '#FF0000'
     @selected = null
 
-  size: () ->
+  size: ->
     @cards.length
 
-  findEmptySpace: () ->
+  findEmptySpace: ->
     index = 0
     len = @cards.length
     while index < len
@@ -64,7 +64,7 @@ class Hanafuda.Board extends Hanafuda.Region
       index += 1
     return this
 
-  resolveSelection: () ->
+  resolveSelection: ->
     bottomHand = Hanafuda.instance.bottomHand
     playerCard = bottomHand.selected
     boardCard = @selected

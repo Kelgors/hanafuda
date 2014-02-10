@@ -10,7 +10,7 @@ class Hanafuda.Hand extends Hanafuda.Region
     @selected = null
     @isPlayerHand = false
 
-  size: () ->
+  size: ->
     return @cards.length
 
   addCard: (card) ->
@@ -26,10 +26,10 @@ class Hanafuda.Hand extends Hanafuda.Region
   getCardIndex: (card) ->
     return @cards.indexOf(card)
 
-  getLargerCollection: () ->
+  getLargerCollection: ->
     return if @cards.length > @gain.length then @cards else @gain
 
-  getThinnerCollection: () ->
+  getThinnerCollection: ->
     return if @cards.length > @gain.length then @gain else @cards
 
   getChildAt: (posX, posY) ->
@@ -57,7 +57,7 @@ class Hanafuda.Hand extends Hanafuda.Region
       index += 1
     super if Hanafuda.DEBUG
 
-  clear: () ->
+  clear: ->
     @cards.length = 0
     @gain.length = 0
     return

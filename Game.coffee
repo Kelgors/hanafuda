@@ -65,7 +65,7 @@ class Hanafuda.Game
     @requestId = window.requestAnimationFrame(@draw)
     return
 
-  invalidate: () ->
+  invalidate: ->
     @invalidView = true
     return
 
@@ -108,33 +108,20 @@ class Hanafuda.Game
       @click.trigger('click', event)
     return
 
-  onMouseUp: () ->
+  onMouseUp: ->
     if @click
       @history.click.add(@click)
       @click = null
     return
 
-  distribute: () ->
-    # if !oddHand or !evenHand
-    #   oddHand = @topHand
-    #   evenHand = @bottomHand
-    # index = 0
-    # len = 16
-    # while index < len
-    #   if index % 2 is 0
-    #     oddHand.addCard(@deck.pickup())
-    #   else
-    #     evenHand.addCard(@deck.pickup())
-    #   @board.addCard(@deck.pickup()) if index < 8
-    #   index += 1
-    # @invalidate()
+  distribute: ->
     @topHand.clear()
     @bottomHand.clear()
     @board.clear()
     do @distributionIterator
     return
 
-  distributionIterator: () ->
+  distributionIterator: ->
     topsize = @topHand.size()
     botsize = @bottomHand.size()
     boasize = @board.size()
