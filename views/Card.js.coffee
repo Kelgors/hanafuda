@@ -10,17 +10,17 @@ class Hanafuda.Card extends Hanafuda.Region
     if @owner.isPlayerHand
       @off(null, null, this)
     @owner = owner
-    @on('focus', @onFocusUnfocus, this)
-    @on('click', ->
+    @on 'focus', @onFocusUnfocus, this
+    @on 'click', ->
       console.log 'click on ' + @month + ' - ' + @type
       return
-    , this)
+    , this
     if owner.isPlayerHand
       console.log('player-hand')
-      @on('focus', @playerEvents.onFocusUnfocus, this)
-      @on('unfocus', @playerEvents.onFocusUnfocus, this)
-    if owner.isPlayerHand or owner instanceof Hanafuda.Board
-      @on('click', @playerEvents.onClick, this)
+      @on 'focus', @playerEvents.onFocusUnfocus, this
+      @on 'unfocus', @playerEvents.onFocusUnfocus, this
+    @on 'click', @playerEvents.onClick, this if owner.isPlayerHand or owner instanceof Hanafuda.Board
+    return
 
   onFocusUnfocus: (event) ->
     @isFocus = event.type is 'focus'

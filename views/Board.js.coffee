@@ -2,8 +2,8 @@
 class Hanafuda.Board extends Hanafuda.Region
   constructor: (@name, @deck, x, y, width, height) ->
     super x, y, width, height
-    @pile = new Hanafuda.List
-    @cards = new Hanafuda.List
+    @pile = new Hanafuda.List()
+    @cards = new Hanafuda.List()
     paddingY = 10
     paddingX = 10
     @stroke = '#FF0000'
@@ -38,9 +38,9 @@ class Hanafuda.Board extends Hanafuda.Region
     pos = @deck.pos.clone()
     @deck.constructor.call(@deck)
     @deck.pos.set(pos)
-    @pile.push.apply(@pile, @deck.cards)
     @deck.cards.each @clearIterator.bind(this)
     return
+
   clearIterator: (index, card) ->
     card.owner = this
     @pile.push(card)
@@ -50,7 +50,8 @@ class Hanafuda.Board extends Hanafuda.Region
     index = 0
     len = @cards.length
     while index < len
-      @cards[index++].draw(context)
+      @cards[index].draw(context) if @cards[index] isnt null
+      index++
     @deck.draw(context)
     super if Hanafuda.DEBUG
     return
@@ -60,8 +61,9 @@ class Hanafuda.Board extends Hanafuda.Region
     index = 0
     len = @cards.length
     while index < len
-      return @cards[index] if @cards[index].contains(posX, posY)
-      index += 1
+      if @cards[index] isnt null
+        return @cards[index] if @cards[index].contains(posX, posY)
+      index++
     return this
 
   resolveSelection: ->
@@ -74,5 +76,7 @@ class Hanafuda.Board extends Hanafuda.Region
       @selected = null
       bottomHand.selected = null
       boardCard.isFocus = boardCard.isSelected = playerCard.isFocus = playerCard.isSelected = false
+      @cards[@cards.indexOf(boardCard)] = null
       bottomHand.validateCard(playerCard)
-      bottomHand.validateCard(@cards.splice(@cards.indexOf(boardCard), 1)[0], @addCard.bind(this, @deck.pickup()))
+      bottomHand.validateCard(boardCard, @addCard.bind(this, @deck.pickup()))
+    return

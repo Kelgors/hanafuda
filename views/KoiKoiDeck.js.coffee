@@ -1,8 +1,9 @@
 #= require ./Deck
 class Hanafuda.KoiKoiDeck extends Hanafuda.Deck
   constructor: ->
+    super
     Card = Hanafuda.Card
-    @cards = new Hanafuda.List
+    @cards = new Hanafuda.List()
     @cards.push new Card(0, 0, TYPE.COMMON, 1)
     @cards.push new Card(0, 0, TYPE.COMMON, 1)
     @cards.push new Card(0, 0, TYPE.POETRY_RIBBON, 1)
@@ -62,8 +63,9 @@ class Hanafuda.KoiKoiDeck extends Hanafuda.Deck
     @cards.push new Card(0, 0, TYPE.COMMON, 12)
     @cards.push new Card(0, 0, TYPE.COMMON, 12)
     @cards.push new Card(0, 0, TYPE.SPECIAL, 12)
-    super
-  resolveCombo: (card1, card2) ->
-    return true
 
-
+  resolveCombo: (card, collection) ->
+    count = []
+    for c_card, index in collection by 1
+      count.push(index) if c_card.month is card.month
+    return count

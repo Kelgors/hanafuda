@@ -1,5 +1,5 @@
 class Hanafuda.List extends Array
-   constructor: ->
+  constructor: ->
     super 0
 
   clear: ->
@@ -70,5 +70,12 @@ class Hanafuda.List extends Array
     return @length
 
   set: (index, value) ->
-    @splice(index, 1, value)
-    return
+    return @splice(index, 1, value)[0]
+
+  slice: ->
+    l = new Hanafuda.List()
+    l.push.apply(l, Array.prototype.slice.apply(this, arguments))
+    return l
+
+  toArray: ->
+    return @slice()

@@ -3,8 +3,8 @@ class Hanafuda.Hand extends Hanafuda.Region
   PADDING_RIGHT = 10
   constructor: (@name, x, y, w, h) ->
     super x, y, w, h
-    @cards = new Hanafuda.List
-    @gain = new Hanafuda.List
+    @cards = new Hanafuda.List()
+    @gain = new Hanafuda.List()
 
     @stroke = '#00FF00'
     @selected = null
@@ -21,7 +21,7 @@ class Hanafuda.Hand extends Hanafuda.Region
     return
 
   getCardPositionByIndex: (index) ->
-    return new Hanafuda.Point(@pos.x + 20 + index * (Hanafuda.Card.WIDTH + PADDING_RIGHT), this.pos.y + this.height / 2 - Hanafuda.Card.HEIGHT / 2)
+    return new Hanafuda.Point(@pos.x + 20 + index * (Hanafuda.Card.WIDTH + PADDING_RIGHT), @pos.y + @height / 2 - Hanafuda.Card.HEIGHT / 2)
 
   getCardIndex: (card) ->
     return @cards.indexOf(card)
@@ -66,9 +66,9 @@ class Hanafuda.Hand extends Hanafuda.Region
   validateCombo: (card1, card2, callback) ->
     @validateCard(card1)
     @validateCard(card2, callback)
-
+    return
   validateCard: (card, callback) ->
-    posY = this.pos.y + this.height / 2 + Hanafuda.Card.HEIGHT * 1.5
+    posY = @pos.y + @height / 2 + Hanafuda.Card.HEIGHT * 1.5
     switch card.type
       when TYPE.COMMON
         posX = 10
